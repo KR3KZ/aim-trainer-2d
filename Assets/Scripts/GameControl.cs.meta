@@ -1,0 +1,18 @@
+fileFormatVersion: 2
+guid: ae6a55b1da6cd44418b880072dee6ecb
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences:
+  - target: {fileID: 762348361430565439, guid: ba1841cab06f8504f883e6407495320f, type: 3}
+  - getReadyText: {instanceID: 0}
+  - resultsPanel: {instanceID: 0}
+  - scoreText: {instanceID: 0}
+  - targetsHitText: {instanceID: 0}
+  - shotsFiredText: {instanceID: 0}
+  - accuracyText: {instanceID: 0}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
