@@ -14,21 +14,17 @@ public class Target : MonoBehaviour
         gameObject.transform.localScale += new Vector3(GameControl.targetSize, GameControl.targetSize, GameControl.targetSize);
     }
 
-    void Update() {
+    void Update() {        
         if (GameControl.gameRunning) {
             timeSinceInitialization = Time.timeSinceLevelLoad - initializationTime;
             if (timeSinceInitialization > 3) {
-                GameControl.score -= 20;
-                GameControl.playerLife -= 1;
+                GameControl.onTargetUnspawned();
                 if (GameControl.targetSize < 1f) {
                     GameControl.targetSize += 0.1f;
-                    UnityEngine.Debug.Log("targetSize: " + GameControl.targetSize);
                 }
                 if (GameControl.timeSpawn < 1f) {
                     GameControl.timeSpawn += 0.08f;
-                    UnityEngine.Debug.Log("timeSpawn: " + GameControl.timeSpawn);
                 }
-
                 Destroy(gameObject);
             }
         }
@@ -36,8 +32,7 @@ public class Target : MonoBehaviour
 
     private void OnMouseDown() {
         if (GameControl.gameRunning) {
-            GameControl.score += 10;
-            GameControl.targetsHit += 1;
+            GameControl.onTargetClicked();
             if (GameControl.targetSize > 0.06f) {
                 GameControl.targetSize -= 0.1f;
             }
