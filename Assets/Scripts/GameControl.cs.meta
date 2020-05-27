@@ -5,12 +5,24 @@ MonoImporter:
   serializedVersion: 2
   defaultReferences:
   - target: {fileID: 762348361430565439, guid: ba1841cab06f8504f883e6407495320f, type: 3}
+  - resultsPanel: {fileID: 5786010788492978044, guid: d04ced8d7a9130c4cb335ff2c205b281,
+      type: 3}
+  - playPanel: {fileID: 4062654056406721204, guid: 259b17e0f8911134a811f089e028c29a,
+      type: 3}
+  - optionsPanel: {fileID: 1133240997821846144, guid: 3b0c2e19d6e265147a61eb037036c816,
+      type: 3}
+  - scoresPanel: {instanceID: 0}
   - getReadyText: {instanceID: 0}
-  - resultsPanel: {instanceID: 0}
   - scoreText: {instanceID: 0}
   - targetsHitText: {instanceID: 0}
   - shotsFiredText: {instanceID: 0}
   - accuracyText: {instanceID: 0}
+  - mainPlayerLife: {instanceID: 0}
+  - mainScore: {instanceID: 0}
+  - mainTargetsRemaining: {instanceID: 0}
+  - scoresText: {instanceID: 0}
+  - optionNbLife: {instanceID: 0}
+  - optionNbTarget: {instanceID: 0}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 

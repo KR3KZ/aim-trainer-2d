@@ -43,7 +43,7 @@ public class GameControl : MonoBehaviour
         getReadyText.gameObject.SetActive(false);
         resultsPanel.SetActive(false);
         optionsPanel.SetActive(false);
-        updateScoresPanel();
+        showScoresPanel();
     }
 
     void Update() {
@@ -60,6 +60,11 @@ public class GameControl : MonoBehaviour
             mainPlayerLife.text         = playerLife.ToString();
             mainTargetsRemaining.text   = targetsHit.ToString() + "/" + targetsAmount.ToString();
         }
+    }
+
+    public void showScoresPanel() {
+        scoresPanel.SetActive(true);
+        updateScoresPanel();
     }
 
     public void updateScoresPanel() {
@@ -110,6 +115,10 @@ public class GameControl : MonoBehaviour
         shotsFiredText.text = shotsFired + " tirs";
         accuracy            = calculcateAccuracy(targetsHit, shotsFired);
         accuracyText.text   = "Précision : " + accuracy.ToString("N2") + " %";
+        if (!gameRunning) {
+            myDb.addScore();
+        }
+        showScoresPanel();
     }
 
     public float calculcateAccuracy(float targetsHit, float shotsFired) {
@@ -118,6 +127,7 @@ public class GameControl : MonoBehaviour
 
     public void StartGetReadyCoroutine() {
         playPanel.SetActive(false);
+        scoresPanel.SetActive(false);
         getReadyText.gameObject.SetActive(true);
         StartCoroutine("GetReady");
     }
@@ -196,5 +206,17 @@ public class Database
         }
         this.ctx.Close();
         return dataList;
+    }
+
+    public void addScore() {
+        this.ctx.Open();
+        string query = "INSERT INTO `score` (`score`, `targets_hit`, `shots`) VALUES (@score, @targetsHit, @shots);";
+        MySqlCommand cmd = new MySqlCommand(query, this.ctx);
+        cmd.Prepare();
+        cmd.Parameters.AddWithValue("@score", GameControl.score);
+        cmd.Parameters.AddWithValue("@targetsHit", GameControl.targetsHit);
+        cmd.Parameters.AddWithValue("@shots", GameControl.shotsFired);
+        cmd.ExecuteNonQuery();
+        this.ctx.Close();
     }
 }
